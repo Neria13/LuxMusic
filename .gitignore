@@ -23,4 +23,7 @@
 hs_err_pid*
 replay_pid*
 
+# Configuration & NPM modules
 config.js
+.vscode
+node_modules
