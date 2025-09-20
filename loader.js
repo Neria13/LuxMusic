@@ -44,7 +44,7 @@ const rest = new REST().setToken(config.app.token);
 // Uncomment this if a command deletion is needed
 /* rest.put(Routes.applicationGuildCommands(config.app.clientId, config.app.guildId), { body: [] })
 	.then(() => console.log('Successfully deleted all guild commands.'))
-	.catch(console.error); */
+	.catch(console.error);  */
 
 // Deploy the commands
 (async () => {

@@ -3,6 +3,7 @@ require('dotenv').config();
 
 const { Client, GatewayIntentBits } = require("discord.js");
 const { Player } = require("discord-player");
+const { SoundcloudExtractor } = require("discord-player-soundcloud");
 
 global.client = new Client({
     intents: [
@@ -18,7 +19,9 @@ global.client = new Client({
 client.config = require("./config");
 
 // create player
-const player = new Player(client, client.config.opt.discordPlayer);
+const player = new Player(client, {});
+
+player.extractors.register(SoundcloudExtractor, { });
 
 console.clear();
 require("./loader.js");

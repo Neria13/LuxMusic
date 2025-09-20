@@ -1,5 +1,5 @@
 const { EmbedBuilder, InteractionType, MessageFlags } = require('discord.js');
-const { useQueue } = require('discord-player');
+const { useQueue, useMainPlayer } = require('discord-player');
 
 module.exports = async (client, inter) => {
     await inter.deferReply({ flags: MessageFlags.Ephemeral });
@@ -22,7 +22,12 @@ module.exports = async (client, inter) => {
             return;
         }
 
-        command.execute({ inter, client });
+        const player = useMainPlayer();
+        const data = { guild: inter.guild };
+        player.context.provide(data,() => command.execute({ inter, client }));
+
+        // command.execute({ inter, client });
+
     } else if (inter.type === InteractionType.MessageComponent) {
         const customId = inter.customId;
         if (!customId) return;
